@@ -12,8 +12,21 @@
 		@csrf
 
 		<input type="hidden" name="id" value="{{ $user->id }}">
+
 	  <h1 class="pb-4">Company Info:</h1>
 
+	    @if(Session::get('message'))
+	        <div class="alert alert-success alert-dismissible">
+	          <button type="button" class="close" data-dismiss="alert">&times;</button>
+	          <strong>{{ Session::get('message')}}</strong>
+	        </div>
+      	@endif
+      	@if(Session::get('error'))
+	        <div class="alert alert-danger alert-dismissible">
+	          <button type="button" class="close" data-dismiss="alert">&times;</button>
+	          <strong>{{ Session::get('message')}}</strong>
+	        </div>
+      	@endif
 	  <!-- One "tab" for each step in the form: -->
 	  <div class="tab">
 	  	<h3 class="text-center p-3" style="background-color: #abccca;">We would like to know about your business!</h3><br><br>

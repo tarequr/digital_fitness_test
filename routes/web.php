@@ -14,21 +14,29 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'FrontEnd\HomeController@index')->name('frontEnd.home');
-/*--------------------user registtation start-------------------------*/
+/*--------------------user registation start-------------------------*/
 Route::get('/user-info', 'FrontEnd\RegistrationController@reg')->name('user.info');
 Route::post('/user-info/store', 'FrontEnd\RegistrationController@regStore')->name('user.info.store');
-/*--------------------user registtation end-------------------------*/
+/*--------------------user registation end-------------------------*/
 
 /*--------------------company information start-------------------------*/
 Route::get('/company-info', 'FrontEnd\CompanyController@index')->name('company.info');
 Route::post('/company-info/store', 'FrontEnd\CompanyController@store')->name('company.info.store');
 /*--------------------company information end-------------------------*/
 
-/*--------------------company information start-------------------------*/
+/*--------------------question information start-------------------------*/
 Route::get('/business-type', 'FrontEnd\QuestionController@businessType')->name('business.type');
 Route::get('/business-wise/questions/{id}', 'FrontEnd\QuestionController@businessWiseQtn')->name('business.wise.questions');
-// Route::post('/company-info/store', 'FrontEnd\QuestionController@store')->name('company.info.store');
-/*--------------------company information end-------------------------*/
+Route::post('/business-wise/questions/store', 'FrontEnd\QuestionController@businessQtnStore')->name('business.questions.store');
+/*--------------------question information end-------------------------*/
+
+
+Route::get('user/registation-permission', 'FrontEnd\VerifyController@regPermission')->name('registation.permission');
+
+
+/*--------------------user dashboard information start-------------------------*/
+Route::get('/user-dashboard', 'FrontEnd\UserController@userDashboard')->name('user.dashboard');
+/*--------------------user dashboard information end-------------------------*/
 
 
 Auth::routes();

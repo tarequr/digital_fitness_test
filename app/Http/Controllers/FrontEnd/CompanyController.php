@@ -12,9 +12,15 @@ class CompanyController extends Controller
 {
     public function index()
     {
-    	$user = User::find(Session::get('user_id'));
-
-    	return view('frontEnd.company.company-info',compact('user'));
+    	// if (Session::get('user_id')) {
+     //        $user = User::find(Session::get('user_id'));
+     //        return view('frontEnd.company.company-info',compact('user'));
+     //    }else{
+     //        Session::flash('error','Please complete your personal information!');
+     //        return redirect()->route('frontEnd.home');
+     //    }
+        $user = User::find(Session::get('user_id'));
+            return view('frontEnd.company.company-info',compact('user'));
     }
 
     public function store(Request $request)
@@ -47,6 +53,9 @@ class CompanyController extends Controller
     	$company->qtn_22   = $request->qtn_22;
     	$company->qtn_23   = $request->qtn_23;
     	$company->save();
+
+        $company_id    = $company->id;
+        Session::put('company_id',$company_id);
 
         Session::flash('message','You successfully submit your company info!!');
     	return redirect()->route('business.type');

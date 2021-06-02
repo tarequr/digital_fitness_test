@@ -27,11 +27,13 @@ class QuestionRequest extends FormRequest
             return[
                 'section_name' => 'required',
                 'name'         => 'required|unique:questions,name,'.$this->id,
+                'weightage'    => 'required',
             ];
         }
         return [
             'section_name' => 'required',
             'name'         => 'required|unique:questions',
+            'weightage'    => 'required',
         ];
     }
 }

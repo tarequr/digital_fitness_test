@@ -13,4 +13,8 @@ class Question extends Model
     public function section(){
     	return $this->belongsTo(Section::class,'sectionId','id');
     }
+
+    public function answers(){
+    	return $this->hasMany(Answer::class);
+    }
 }

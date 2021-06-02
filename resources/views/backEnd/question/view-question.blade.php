@@ -24,6 +24,7 @@ Question | View
           <th>Business Type</th>
           <th>Section Name</th>
           <th>Question</th>
+          <th>Weightage</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -33,6 +34,7 @@ Question | View
           <th>Business Type</th>
           <th>Section Name</th>
           <th>Question</th>
+          <th>Weightage</th>
           <th>Action</th>
         </tr>
       </tfoot>
@@ -44,6 +46,7 @@ Question | View
           <td>{{ $question['businessType']['name'] }}</td>
           <td>{{ $question['section']['name'] }}</td>
           <td>{{ $question->name }}</td>
+          <td>{{ $question->weightage }}</td>
           <td width="13%">
             <a href="{{ route('question.edit',$question->id)}}" class="btn btn-success btn-sm" title="Edit"><i class="fa fa-pencil"></i></a>
             <a href="{{ route('question.delete',$question->id)}}" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Are you sure to delete?')"><i class="fa fa-trash-o"></i></a>

@@ -10,7 +10,7 @@
 @section('content')
 
 @if($questionCount>0)
-	<form id="regForm" action="{{ route('company.info.store') }}"  method="POST">
+	<form id="regForm" action="{{ route('business.questions.store') }}"  method="POST">
 		@csrf
 
 	  <h1 class="pb-4">Please fill this question</h1>
@@ -20,9 +20,9 @@
 		  <div class="tab">
 		  	<span class="text-center">{{ $question->name }}</span><br><br>
 		    <p class="text-center">
-		    	<input type="radio" id="yes" name="answer" value="1" style="width: 2%">
+		    	<input type="radio" id="yes" name="answer[{{ $question->id }}]" value="1" style="width: 2%">
 				<label for="yes">Yes</label><br>
-				<input type="radio" id="no" name="answer" value="1" style="width: 2%">
+				<input type="radio" id="no" name="answer[{{ $question->id }}]" value="0" style="width: 2%">
 				<label for="no">No</label>
 		    </p>
 		  </div>

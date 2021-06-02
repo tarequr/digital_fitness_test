@@ -29,6 +29,7 @@ class QuestionController extends Controller
         $question = new Question();
         $question->sectionId  = $request->section_name;
         $question->name       = $request->name;
+        $question->weightage  = $request->weightage;
 
         $section = Section::find($request->section_name);
         $question->businessTypeId = $section->businessTypeId;
@@ -52,6 +53,7 @@ class QuestionController extends Controller
         $question = Question::find($id);
         $question->sectionId = $request->section_name;
         $question->name      = $request->name;
+        $question->weightage = $request->weightage;
         
         $section = Section::find($request->section_name);
         $question->businessTypeId = $section->businessTypeId;

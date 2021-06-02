@@ -53,6 +53,13 @@
                         <strong class="text-danger"> {{$errors->has('name') ? $errors->first('name') : '' }} </strong>
                       </div>
                     </div>
+                    <div class="form-group row">
+                      <label class="col-sm-3 col-form-label">Weightage</label>
+                      <div class="col-sm-9">
+                        <input type="number" name="weightage" value="{{@$editQuestion->weightage}}" class="form-control" placeholder="Write weightage Number" min="1">
+                        <strong class="text-danger"> {{$errors->has('weightage') ? $errors->first('weightage') : '' }} </strong>
+                      </div>
+                    </div>
                     
                     <div class="form-group row">
                       <label class="col-sm-3 col-form-label"></label>
