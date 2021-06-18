@@ -8,31 +8,30 @@ use App\Model\BusinessType;
 use App\Model\Question;
 use App\Model\Answer;
 use Session;
+use Validator;
 
 class QuestionController extends Controller
 {
     public function businessType()
     {
-    	// if (!Session::get('user_id')) {
+    	if (!Session::get('user_id')) {
 
-     //        Session::flash('error','Please complete your personal information!');
-     //        return redirect()->route('frontEnd.home');
-     //    }elseif (!Session::get('company_id')) {
+            Session::flash('error','Please complete your personal information!');
+            return redirect()->route('frontEnd.home');
+        }elseif (!Session::get('company_id')) {
 
-     //        Session::flash('error','Please complete your company information!');
-     //        return redirect()->route('company.info');
-     //    }else{
-     //        $businessTypes = BusinessType::all();
-     //        return view('frontEnd.question.business-type',compact('businessTypes'));
-     //    }
-        $businessTypes = BusinessType::all();
+            Session::flash('error','Please complete your company information!');
+            return redirect()->route('company.info');
+        }else{
+            $businessTypes = BusinessType::all();
             return view('frontEnd.question.business-type',compact('businessTypes'));
+        }
+        
     }
 
     public function businessWiseQtn($id)
     {
     	$questionCount = Question::where('businessTypeId',$id)->count();
-    	// dd($questionCount);
     	$questions = Question::where('businessTypeId',$id)->orderBy('id','asc')->get();
 
     	return view('frontEnd.question.business-wise-question',compact('questionCount','questions'));
@@ -40,21 +39,27 @@ class QuestionController extends Controller
 
     public function businessQtnStore(Request $request)
     {
-        //$request validation kore niyen
+        $validator = Validator::make($request->all(), [
+            'answer'   => 'required|array',
+            'answer.*' => 'required'
+        ]);
 
-        foreach ($request->all() as $question_id => $answer) {
+        if($validator->fails()){
+            return redirect()->back()->with('error', $validator->messages()->first('answer'));
+        }
+
+        foreach ($request->answer as $question_id => $ans) {
+
             $answer = new Answer();
             $answer->user_id = Session::get('user_id');
             $answer->question_id = $question_id;
-            $answer->answer = $answer;
-            //$answer->marks = Question::find($question_id)->weightage * $answer;
-            $question = Question::find($question_id);
-            dd($question);
-            // $answer->marks = $question->weightage * $answer;
-
+            $answer->answer = $ans;
+            $answer->section_id = Question::find($question_id)->sectionId;
+            $answer->marks = Question::find($question_id)->weightage * $ans;
             $answer->save();
-
-            return 'ok';
         }
+
+        Session::flash('message','Answer save successfully!');
+        return redirect()->route('registation.permission');
     }
 }

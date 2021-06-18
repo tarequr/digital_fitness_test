@@ -16,7 +16,7 @@
 	  <h1 class="pb-4">Company Info:</h1>
 
 	    @if(Session::get('message'))
-	        <div class="alert alert-success alert-dismissible">
+	        <div class="alert alert-info alert-dismissible">
 	          <button type="button" class="close" data-dismiss="alert">&times;</button>
 	          <strong>{{ Session::get('message')}}</strong>
 	        </div>
@@ -35,68 +35,13 @@
 	  <div class="tab">
 	  	<b>What is your company registered name?</b>
 	    <p><input placeholder="Company Name" oninput="this.className = '' "name="qtn_1"></p>
-	  </div>
-
-	  <div class="tab">
-	  	<b>What type of business your company is?</b>
-	    <p>
-	    	<select class="form-control" name="qtn_2">
-				<option value="">Please select</option>
-	    		<option value="solo_proprietor">Solo Proprietor</option>
-	    		<option value="partnership">Partnership</option>
-	    		<option value="limited_liability_partnership">Limited Liability Partnership (LLP)</option>
-	    		<option value="private_limited_company">Private Limited Company (Sdn Bhd)</option>
-	    	</select>
-		</p>
-	  </div>
-
-	  <div class="tab">
-	  	<b>What is your business activity?</b>
-	    <p>
-	    	<select class="form-control" name="qtn_3">
-	    		<option value="">Please select</option>
-	    		<option value="agriculture">Agriculture</option>
-	    		<option value="construction">Construction</option>
-	    		<option value="manufacturing">Manufacturing</option>
-	    		<option value="mining_and_quarring">Mining and Quarring</option>
-	    		<option value="service">Service</option>
-	    	</select>
-		</p>
-	  </div>
-
-	  <div class="tab">
-	  	<b>What is your business industry?</b>
-	    <p>
-	    	<select class="form-control" name="qtn_4">
-	    		<option value="">Please select</option>
-	    		<option value="aerospace">Aerospace</option>
-	    		<option value="automotive">Automotive</option>
-	    		<option value="Defence">Defence</option>
-	    		<option value="food_&_drink">Food & Drink</option>
-	    		<option value="furniture">Furniture</option>
-	    		<option value="general_engineering">General Engineering</option>
-	    		<option value="nuclear">Nuclear</option>
-	    		<option value="oil_&_gas">Oil & Gas</option>
-	    		<option value="securities">Securities</option>
-	    		<option value="space">Space</option>
-	    		<option value="telecommunication">Telecommunication</option>
-	    		<option value="civil_engineering">Civil Engineering</option>
-	    		<option value="textile">Textile</option>
-	    		<option value="electrical_&_electronic_engineering">Electrical & Electronic Engineering</option>
-	    		<option value="industrial_gas_&_turbine">Industrial Gas & Turbine</option>
-	    		<option value="rail">Rail</option>
-	    		<option value="marine">Marine</option>
-	    		<option value="petrochemical">Petrochemical</option>
-	    		<option value="medical">Medical</option>
-	    		<option value="maritime_system">Maritime System</option>
-	    	</select>
-		</p>
+	    <strong class="text-danger"> {{$errors->has('qtn_1') ? $errors->first('qtn_1') : '' }} </strong>
 	  </div>
 
 	  <div class="tab">
 	  	<b>How long your company has been operating?</b>
 	    <p>
-	    	<select class="form-control" name="qtn_5">
+	    	<select class="form-control" name="qtn_2">
 	    		<option value="">Please select</option>
 	    		<option value="1_year">1 Year</option>
 	    		<option value="2_year">2 Year</option>
@@ -130,13 +75,14 @@
 	    		<option value="30_year">30 Year</option>
 	    	</select>
 		</p>
+		<strong class="text-danger"> {{$errors->has('qtn_2') ? $errors->first('qtn_2') : '' }} </strong>
 	  </div>
 
 	  <div class="tab">
-	  	<b>Where your company located?</b>
+	  	<b>Where your company located?</b> <br>
 	  	<span>State</span>
 	  	<p>
-	    	<select class="form-control" name="qtn_6">
+	    	<select class="form-control" name="qtn_3">
 	    		<option value="">Please select</option>
 	    		<option value="kl">KL</option>
 	    		<option value="selangor">Selangor</option>
@@ -156,46 +102,149 @@
 	    		<option value="putrajaya">Putrajaya</option>
 	    	</select>
 		</p>
+		<strong class="text-danger"> {{$errors->has('qtn_3') ? $errors->first('qtn_3') : '' }} </strong><br>
 		<span>Postcode</span>
-	    <p><input placeholder="Please enter" oninput="this.className = '' "name="qtn_7"></p>
+	    <p><input placeholder="Please enter" oninput="this.className = '' "name="qtn_4"></p>
+	    <strong class="text-danger"> {{$errors->has('qtn_4') ? $errors->first('qtn_4') : '' }} </strong>
+	  </div>
+
+	  <div class="tab">
+	  	<b>What type of business your company is?</b>
+	    <p>
+	    	<select class="form-control" name="qtn_5">
+				<option value="">Please select</option>
+	    		<option value="solo_proprietor">Solo Proprietor</option>
+	    		<option value="partnership">Partnership</option>
+	    		<option value="limited_liability_partnership">Limited Liability Partnership (LLP)</option>
+	    		<option value="private_limited_company">Private Limited Company (sdn bhd)</option>
+	    	</select>
+		</p>
+		<strong class="text-danger"> {{$errors->has('qtn_5') ? $errors->first('qtn_5') : '' }} </strong>
+	  </div>
+
+	  <div class="tab">
+	  	<b>What is your business activity?</b>
+	    <p>
+	    	<select class="form-control" name="qtn_6">
+	    		<option value="">Please select</option>
+	    		<option value="agriculture">Agriculture</option>
+	    		<option value="construction">Construction</option>
+	    		<option value="manufacturing">Manufacturing</option>
+	    		<option value="mining_and_quarring">Mining and Quarring</option>
+	    		<option value="service">Service</option>
+	    	</select>
+		</p>
+		<strong class="text-danger"> {{$errors->has('qtn_6') ? $errors->first('qtn_6') : '' }} </strong>
+	  </div>
+
+	  <div class="tab">
+	  	<b>What is your business industry?</b>
+	    <p>
+	    	<select class="form-control" name="qtn_7">
+	    		<option value="">Please select</option>
+	    		<option value="aerospace">Aerospace</option>
+	    		<option value="automotive">Automotive</option>
+	    		<option value="Defence">Defence</option>
+	    		<option value="food_&_drink">Food & Drink</option>
+	    		<option value="furniture">Furniture</option>
+	    		<option value="general_engineering">General Engineering</option>
+	    		<option value="nuclear">Nuclear</option>
+	    		<option value="oil_&_gas">Oil & Gas</option>
+	    		<option value="securities">Securities</option>
+	    		<option value="space">Space</option>
+	    		<option value="telecommunication">Telecommunication</option>
+	    		<option value="civil_engineering">Civil Engineering</option>
+	    		<option value="textile">Textile</option>
+	    		<option value="electrical_&_electronic_engineering">Electrical & Electronic Engineering</option>
+	    		<option value="industrial_gas_&_turbine">Industrial Gas & Turbine</option>
+	    		<option value="rail">Rail</option>
+	    		<option value="marine">Marine</option>
+	    		<option value="petrochemical">Petrochemical</option>
+	    		<option value="medical">Medical</option>
+	    		<option value="maritime_system">Maritime System</option>
+	    	</select>
+		</p>
+		<strong class="text-danger"> {{$errors->has('qtn_7') ? $errors->first('qtn_7') : '' }} </strong>
+	  </div>
+
+	  <div class="tab">
+	  	<b>How many percent of your company equity is owned by Malaysian?</b>
+	    <p>
+	    	<select class="form-control" name="qtn_8">
+	    		<option value="">Please select</option>
+	    		<option value="less_than_50%">Less than 50%</option>
+	    		<option value="50%-60%">50% to 60%</option>
+	    		<option value="more_than_60%">More than 60%</option>
+	    	</select>
+		</p>
+		<strong class="text-danger"> {{$errors->has('qtn_8') ? $errors->first('qtn_8') : '' }} </strong>
 	  </div>
 
 	  <div class="tab">
 	  	<b>How many paid worker are helping you in your business?</b>
 	    <p>
-	    	<select class="form-control" name="qtn_8">
+	    	<select class="form-control" name="qtn_9">
 	    		<option value="">Please select</option>
-	    		<option value="<5">Less than 5</option>
+	    		<option value="less_than_5">Less than 5</option>
 	    		<option value="5-30">5 – 30</option>
 	    		<option value="31-75">31 – 75</option>
-	    		<option value=">75">More than 75</option>
+	    		<option value="more_than_75">More than 75</option>
 	    	</select>
 		</p>
+		<strong class="text-danger"> {{$errors->has('qtn_9') ? $errors->first('qtn_9') : '' }} </strong>
+	  </div>
+
+	  <div class="tab">
+	  	<b>Any staff changes in previous 12 months?</b>
+	    <p>
+	    	<select class="form-control" name="qtn_10">
+	    		<option value="">Please select</option>
+	    		<option value="increase">Increase</option>
+	    		<option value="decrease">Decrease</option>
+	    		<option value="no_change">No Change</option>
+	    	</select>
+		</p>
+		<strong class="text-danger"> {{$errors->has('qtn_10') ? $errors->first('qtn_10') : '' }} </strong>
+	  </div>
+
+	  <div class="tab">
+	  	<b>What is the percentage changes on the staff you have?</b>
+	    <p>
+	    	<select class="form-control" name="qtn_11">
+	    		<option value="">Please select</option>
+	    		<option value="less_than_30%">Less than 30%</option>
+	    		<option value="30%-50%">30%-50%</option>
+	    		<option value="more_than_50%">More than 50%</option>
+	    	</select>
+		</p>
+		<strong class="text-danger"> {{$errors->has('qtn_11') ? $errors->first('qtn_11') : '' }} </strong>
 	  </div>
 
 	  <div class="tab">
 	  	<b>How much is your company’s paid up capital?</b>
 	    <p>
-	    	<select class="form-control" name="qtn_9">
+	    	<select class="form-control" name="qtn_12">
 	    		<option value="">Please select</option>
-	    		<option value="<RM50K">Less than RM50K</option>
-	    		<option value=">RM50K">More than RM50K</option>
+	    		<option value="less_than_RM50K">Less than RM50K</option>
+	    		<option value="more_than_RM50K">More than RM50K</option>
 	    	</select>
 		</p>
+		<strong class="text-danger"> {{$errors->has('qtn_12') ? $errors->first('qtn_12') : '' }} </strong>
 	  </div>
 
 	  <div class="tab">
 	  	<b>How much your company earn last year? (Gross Revenue)</b>
 	    <p>
-	    	<select class="form-control" name="qtn_10">
+	    	<select class="form-control" name="qtn_13">
 	    		<option value="">Please select</option>
-	    		<option value="<RM300K">Less than RM300K</option>
-	    		<option value=">RM300K">More than RM300K</option>
+	    		<option value="less_than_RM300K">Less than RM300K</option>
+	    		<option value="more_than_RM300K">More than RM300K</option>
 	    	</select>
 		</p>
+		<strong class="text-danger"> {{$errors->has('qtn_13') ? $errors->first('qtn_13') : '' }} </strong>
 	  </div>
 
-	  <div class="tab">
+	  <!-- <div class="tab">
 	  	<b>Did your company register in SSM or other equivalent bodies?</b><br><br>
 	    <p class="text-center">
 	    	<input type="radio" id="yes" name="qtn_11" value="yes" style="width: 2%">
@@ -203,18 +252,6 @@
 			<input type="radio" id="no" name="qtn_11" value="no" style="width: 2%">
 			<label for="no">No</label>
 	    </p>
-	  </div>
-
-	  <div class="tab">
-	  	<b>How many percent of your company equity is owned by Malaysian?</b>
-	    <p>
-	    	<select class="form-control" name="qtn_12">
-	    		<option value="">Please select</option>
-	    		<option value="<50%">Less than 50%</option>
-	    		<option value="50%-60%">50% to 60%</option>
-	    		<option value=">60%">More than 60%</option>
-	    	</select>
-		</p>
 	  </div>
 
 	  <div class="tab">
@@ -257,7 +294,7 @@
 	    		<option value="smecorp">SMECORP</option>
 	    	</select>
 		</p>
-	  </div>
+	  </div> -->
 
 	  <div class="tab">
 	  	<h3 class="text-center p-3" style="background-color: #abccca;">What is your business pain
@@ -268,14 +305,27 @@
 	  	<b>In the last 24 months, did your company implement any new digital processes or solutions? 
 		</b><br><br>
 	    <p class="text-center">
-	    	<input type="radio" id="yes" name="qtn_17" value="yes" style="width: 2%">
+	    	<input type="radio" id="yes" name="qtn_14" value="yes" style="width: 4%">
 			<label for="yes">Yes</label><br>
-			<input type="radio" id="no" name="qtn_17" value="no" style="width: 2%">
+			<input type="radio" id="no" name="qtn_14" value="no" style="width: 4%">
 			<label for="no">No</label>
 	    </p>
+	    <strong class="text-danger"> {{$errors->has('qtn_14') ? $errors->first('qtn_14') : '' }} </strong>
 	  </div>
 
 	  <div class="tab">
+	  	<b>Did it sustain or grow your business? 
+		</b><br><br>
+	    <p class="text-center">
+	    	<input type="radio" id="yes" name="qtn_15" value="yes" style="width: 4%">
+			<label for="yes">Yes</label><br>
+			<input type="radio" id="no" name="qtn_15" value="no" style="width: 4%">
+			<label for="no">No</label>
+	    </p>
+	    <strong class="text-danger"> {{$errors->has('qtn_15') ? $errors->first('qtn_15') : '' }} </strong>
+	  </div>
+
+	  <!-- <div class="tab">
 	  	<b>Do you think your company will be increasing its digital transformation efforts or adopt more digital solutions in the next 12 months? </b><br><br>
 	    <p class="text-center">
 	    	<input type="radio" id="yes" name="qtn_18" value="yes" style="width: 2%">
@@ -283,9 +333,9 @@
 			<input type="radio" id="no" name="qtn_18" value="no" style="width: 2%">
 			<label for="no">No</label>
 	    </p>
-	  </div>
+	  </div> -->
 
-	  <div class="tab">
+	  <!-- <div class="tab">
 	  	<b>What challenges do you encounter in your efforts to digitally transform the business and/or to adopt digital solutions? </b><br><br>
 	    <p class="text-center">
 	    	<input type="checkbox" id="" name="qtn_19[]" value="1" style="width: 2%">
@@ -315,9 +365,9 @@
 			<input type="checkbox" id="" name="qtn_19[]" value="9" style="width: 2%">
 			<label for="">Other (Please Specify):</label><br>
 	    </p>
-	  </div>
+	  </div> -->
 	  
-	  <div class="tab">
+	  <!-- <div class="tab">
 	  	<b>Reason why NOT increasing its digital transformation efforts or adopt more digital solutions in the next 12 months? </b><br><br>
 	    <p class="text-center">
 	    	<input type="checkbox" id="" name="qtn_20[]" value="1" style="width: 2%">
@@ -341,7 +391,7 @@
 			<input type="checkbox" id="" name="qtn_20[]" value="7" style="width: 2%">
 			<label for="">Other (Please Specify):</label><br>
 	    </p>
-	  </div>
+	  </div> -->
 
 	  <div class="tab">
 	  	<h3 class="text-center p-3" style="background-color: #abccca;">We would like to understand your company’s digital infrastructure and readiness</h3><br><br>
@@ -355,6 +405,7 @@
 			<input type="radio" id="no" name="qtn_21" value="no" style="width: 2%">
 			<label for="no">No</label>
 	    </p>
+	    <strong class="text-danger"> {{$errors->has('qtn_21') ? $errors->first('qtn_21') : '' }} </strong>
 	  </div>
 
 	  <div class="tab">
@@ -365,6 +416,7 @@
 			<input type="radio" id="no" name="qtn_22" value="no" style="width: 2%">
 			<label for="no">No</label>
 	    </p>
+	    <strong class="text-danger"> {{$errors->has('qtn_22') ? $errors->first('qtn_22') : '' }} </strong>
 	  </div>
 
 	  <div class="tab">
@@ -375,17 +427,8 @@
 			<input type="radio" id="no" name="qtn_23" value="no" style="width: 2%">
 			<label for="no">No</label>
 	    </p>
+	    <strong class="text-danger"> {{$errors->has('qtn_23') ? $errors->first('qtn_23') : '' }} </strong>
 	  </div>
-
-	  <!-- <div class="tab">Birthday:
-	    <p><input placeholder="dd" oninput="this.className = ''" name="dd"></p>
-	    <p><input placeholder="mm" oninput="this.className = ''" name="nn"></p>
-	    <p><input placeholder="yyyy" oninput="this.className = ''" name="yyyy"></p>
-	  </div>
-	  <div class="tab">Login Info:
-	    <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
-	    <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
-	  </div> -->
 
 	  <div style="overflow:auto;">
 	    <div style="float:right;">
@@ -416,11 +459,11 @@
 	    <span class="step"></span>
 	    <span class="step"></span>
 	    <span class="step"></span>
+	    <!-- <span class="step"></span>
 	    <span class="step"></span>
 	    <span class="step"></span>
 	    <span class="step"></span>
-	    <span class="step"></span>
-	    <span class="step"></span>	    
+	    <span class="step"></span>	     -->
 	  </div>
 	</form>
 @endsection

@@ -28,6 +28,10 @@
 		  </div>
 	  	@endforeach
 
+	  	@if(Session::has('error'))
+	  		<strong class="text-danger">{{ Session::get('error') }}</strong>
+	  	@endif
+
 	  <div style="overflow:auto;">
 	    <div style="float:right;">
 	      <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>

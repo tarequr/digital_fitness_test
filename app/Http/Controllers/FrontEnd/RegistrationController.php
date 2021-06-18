@@ -24,19 +24,17 @@ class RegistrationController extends Controller
 
     	$user = new User();
     	$user->user_type     = 'user';
-    	$user->name          = $request->name;
-    	$user->email         = $request->email;
-    	$user->phone         = $request->phone;
+        $user->name          = $request->name;
+        $user->email         = $request->email;
+        $user->phone         = $request->phone;
+        $user->title         = $request->title;
+    	$user->designation   = $request->designation;
     	$user->grants_access = $request->grants_access ;
     	$user->save();
 
     	$user_id    = $user->id;
-    	$user_email = $user->email;
-
         Session::put('user_id',$user_id);
-        Session::put('user_email',$user_email);
 
-    	//return "Welcome";
         Session::flash('message','You successfully submit your personal info!!');
     	return redirect()->route('company.info');
     }

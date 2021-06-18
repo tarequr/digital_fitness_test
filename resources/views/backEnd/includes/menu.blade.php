@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Portfolio</div>
+        <div class="sidebar-brand-text mx-3">IINFIN SME</div>
       </a>
 
       <!-- Divider -->
@@ -44,6 +44,25 @@
             <a class="{{ $route == 'profiles.view' ||  $route == 'profiles.edit' ? 'active' : '' }} collapse-item" href=" {{ route('profiles.view')}} ">Your Profile</a>
 
             <a class="{{( $route == 'profiles.password.view')? 'active' : '' }} collapse-item" href=" {{ route('profiles.password.view')}} ">Change Password</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Nav Item - Users Collapse Menu -->
+      <li class="nav-item">
+        <a class="{{ $route == 'users.active.view' ||  $route == 'users.company.view' ||  $route == 'users.pending.view' ? '' : 'collapsed' }}
+           nav-link" href="#" data-toggle="collapse" data-target="#usersInfo" aria-expanded="true" aria-controls="usersInfo">
+          <i class="fas fa-users"></i>
+          <span>Manage Users</span>
+        </a>
+        <div id="usersInfo" class="collapse {{( $route == 'users.active.view' ||  $route == 'users.company.view' ||  $route == 'users.pending.view') ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Users Information:</h6>
+
+            <a class="{{ $route == 'users.active.view' ||  $route == 'users.company.view' ? 'active' : '' }} collapse-item" href=" {{ route('users.active.view')}} ">Active Users</a>
+
+            <a class="{{( $route == 'users.pending.view')? 'active' : '' }} collapse-item" href=" {{ route('users.pending.view')}} ">Pending Users</a>
           </div>
         </div>
       </li>

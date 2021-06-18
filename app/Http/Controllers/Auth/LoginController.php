@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -37,11 +38,18 @@ class LoginController extends Controller
     public function __construct()
     {
         if (Auth::check() && Auth::user()->role->id == 1) {
-
             $this->redirectTo = route('dashboard');
         }else{
             $this->redirectTo = route('user.dashboard');
         }
+        
         $this->middleware('guest')->except('logout');
+    }
+
+
+    protected function credentials(Request $request)
+    {
+        //return $request->only($this->username(), 'password');
+        return ['email' => $request->{$this->username()},'password' => $request->password, 'status'=>'1'];
     }
 }

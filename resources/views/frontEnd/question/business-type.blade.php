@@ -1,14 +1,14 @@
 @extends('frontEnd.master')
 
 @section('title')
-Home Page
+Business | Type
 @endsection
 
 @section('content')
 <div class="container">
     <div class="card" style="margin-top: 200px;">
         <div class="card-body" style="text-align: center;">
-            <h3>Please select any busines type.</h3><br>
+            <h3>Please select any business type.</h3><br>
             <div class="row">
                 @foreach($businessTypes as $business)
                 <div class="col-md-6">

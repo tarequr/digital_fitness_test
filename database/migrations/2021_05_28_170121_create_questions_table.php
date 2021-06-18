@@ -15,8 +15,8 @@ class CreateQuestionsTable extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('businessTypeId');
-            $table->foreignId('sectionId');
+            $table->foreignId('businessTypeId')->constrained('business_types','id')->onDelete('cascade');
+            $table->foreignId('sectionId')->constrained('sections','id')->onDelete('cascade');
             $table->string('name');
             $table->integer('weightage');
             $table->timestamps();

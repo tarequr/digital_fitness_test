@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('id_number')->nullable();
             $table->string('code')->nullable();
             $table->string('phone')->nullable();
+            $table->string('gender')->nullable();
             $table->string('grants_access')->nullable();
             $table->string('image')->nullable();
             $table->tinyInteger('status')->default(0)->comment('0=inactive,1=active');

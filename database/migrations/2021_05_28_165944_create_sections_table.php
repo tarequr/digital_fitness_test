@@ -15,7 +15,7 @@ class CreateSectionsTable extends Migration
     {
         Schema::create('sections', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('businessTypeId');
+            $table->foreignId('businessTypeId')->constrained('business_types','id')->onDelete('cascade');
             $table->string('name');
             $table->timestamps();
         });

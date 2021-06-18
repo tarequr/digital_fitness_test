@@ -8,10 +8,30 @@
 @endpush
 
 @section('content')
+
+  @guest
     <form id="regForm" method="POST" action="{{ route('user.info.store') }}" >
         @csrf
       <h1>Your Information:</h1>
       <!-- One "tab" for each step in the form: -->
+
+      <div class="tab">
+        <b>Please enter your full name</b>
+        <p><input type="text" name="name" oninput="this.className = ''" placeholder="Enter your full name" value="{{ old('name') }}" /></p>
+        <strong class="text-danger"> {{$errors->has('name') ? $errors->first('name') : '' }} </strong>
+      </div>
+
+      <div class="tab">
+        <b>Please enter your emil</b>
+        <p><input type="email" name="email" oninput="this.className = ''" placeholder="Enter your email" value="{{ old('email') }}" /></p>
+        <strong class="text-danger"> {{$errors->has('email') ? $errors->first('email') : '' }} </strong>
+      </div>
+
+      <div class="tab">
+        <b>Please enter your phone number</b>
+        <p><input type="text" name="phone" oninput="this.className = ''" placeholder="Enter your phone number" value="{{ old('phone') }}" /></p>
+        <strong class="text-danger"> {{$errors->has('phone') ? $errors->first('phone') : '' }} </strong>
+      </div>
 
       <div class="tab">
         <b>Please enter your title.</b>
@@ -36,21 +56,8 @@
       </div>
 
       <div class="tab">
-        <b>Please enter your full name</b>
-        <p><input type="text" name="name" oninput="this.className = ''" placeholder="Enter your full name" value="{{ old('name') }}" /></p>
-        <strong class="text-danger"> {{$errors->has('name') ? $errors->first('name') : '' }} </strong>
-      </div>
-
-      <div class="tab">
-        <b>Please enter your emil</b>
-        <p><input type="email" name="email" oninput="this.className = ''" placeholder="Enter your email" value="{{ old('email') }}" /></p>
-        <strong class="text-danger"> {{$errors->has('email') ? $errors->first('email') : '' }} </strong>
-      </div>
-
-      <div class="tab">
-        <b>Please enter your phone number</b>
-        <p><input type="text" name="phone" oninput="this.className = ''" placeholder="Enter your phone number" value="{{ old('phone') }}" /></p>
-        <strong class="text-danger"> {{$errors->has('phone') ? $errors->first('phone') : '' }} </strong>
+        <b>Please enter your designation</b>
+        <p><input type="text" name="designation" oninput="this.className = ''" placeholder="Enter your designation" value="{{ old('designation') }}" /></p>
       </div>
 
       <div class="tab">
@@ -81,9 +88,23 @@
         <span class="step"></span>
         <span class="step"></span>
         <span class="step"></span>
+        <span class="step"></span>
         
       </div>
     </form>
+  @else
+    <div class="container">
+       <div class="card" style="margin-top: 200px;">
+         <div class="card-header">
+          <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert"></button>
+            <strong>Sorry! You are already registered.</strong>
+          </div>
+         </div>
+       </div>
+     </div>
+  @endguest
+
 @endsection
 
 

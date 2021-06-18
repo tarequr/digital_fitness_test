@@ -15,7 +15,7 @@ class CreateCompanyInfosTable extends Migration
     {
         Schema::create('company_infos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('qtn_1')->nullable();
             $table->string('qtn_2')->nullable();
             $table->string('qtn_3')->nullable();

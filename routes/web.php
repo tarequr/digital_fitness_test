@@ -31,17 +31,50 @@ Route::post('/business-wise/questions/store', 'FrontEnd\QuestionController@busin
 /*--------------------question information end-------------------------*/
 
 
-Route::get('user/registation-permission', 'FrontEnd\VerifyController@regPermission')->name('registation.permission');
-
+/*--------------------user verification information start-------------------------*/
+Route::get('user/registation-permission', 'FrontEnd\UserVerifyController@regPermission')->name('registation.permission');
+Route::get('user/user-upate', 'FrontEnd\UserVerifyController@updateUser')->name('user.upate');
+Route::post('user/user-signup/{id}', 'FrontEnd\UserVerifyController@signupStore')->name('user.signup');
+Route::get('user/email-verify', 'FrontEnd\UserVerifyController@emailVerify')->name('email.verify');
+Route::post('user/verify-save', 'FrontEnd\UserVerifyController@emailStore')->name('verify.save');
+// Route::get('user/user-login', 'FrontEnd\UserVerifyController@userLogin')->name('user.login');
+/*--------------------user verification information end-------------------------*/
 
 /*--------------------user dashboard information start-------------------------*/
-Route::get('/user-dashboard', 'FrontEnd\UserController@userDashboard')->name('user.dashboard');
+Route::group(['namespace' => 'FrontEnd', 'middleware' => ['auth','user'] ], function(){
+    Route::get('/user-dashboard', 'UserController@userDashboard')->name('user.dashboard');
+    Route::get('/user/view-recommendation/{section_id}', 'UserController@viewRecommendation')->name('user.view.recommendation');
+
+    Route::prefix('user')->group(function(){
+        Route::get('/profile/view', 'UserProfileController@view')->name('user.profile.view');
+        Route::get('/profile/edit/', 'UserProfileController@edit')->name('user.profile.edit');
+        Route::post('/profile/update/', 'UserProfileController@update')->name('user.profile.update');
+        Route::get('/password/view', 'UserProfileController@passwordView')->name('user.profile.password.view');
+        Route::post('/password/update', 'UserProfileController@passwordUpdate')->name('user.profile.password.update');
+    });
+
+    Route::prefix('retake')->group(function(){
+        Route::get('/business-type', 'RetakeController@businessType')->name('retake.business.type');
+        Route::get('/business-wise/questions/{id}', 'RetakeController@businessWiseQtn')->name('retake.business.questions');
+        Route::post('/business-wise/questions/store', 'RetakeController@businessQtnStore')->name('retake.business.questions.store'); 
+    });
+
+    Route::prefix('company-info')->group(function(){
+        Route::get('/view', 'UserController@companyInfoView')->name('company.info.view');
+        Route::get('/edit/{id}', 'UserController@companyInfoEidt')->name('company.info.edit');
+        Route::post('/update/{id}', 'UserController@companyInfoUpdate')->name('company.info.update');
+    });
+
+    
+
+    
+});
 /*--------------------user dashboard information end-------------------------*/
 
 
 Auth::routes();
 
-Route::group(['namespace' => 'BackEnd', 'middleware' => ['auth'] ], function(){
+Route::group(['namespace' => 'BackEnd', 'middleware' => ['auth','admin'] ], function(){
 
     Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
@@ -51,6 +84,13 @@ Route::group(['namespace' => 'BackEnd', 'middleware' => ['auth'] ], function(){
         Route::post('/update/', 'ProfileController@update')->name('profiles.update');
         Route::get('/password/view', 'ProfileController@passwordView')->name('profiles.password.view');
         Route::post('/password/update', 'ProfileController@passwordUpdate')->name('profiles.password.update');
+    });
+
+    Route::prefix('users')->group(function(){
+        Route::get('/active/view', 'UserInfoController@activeView')->name('users.active.view');
+        Route::get('/pending/view', 'UserInfoController@pendingView')->name('users.pending.view');
+        Route::get('/pending/delte/{id}', 'UserInfoController@pendingDelete')->name('users.pending.delte');
+        Route::get('/company/view/{id}', 'UserInfoController@companyView')->name('users.company.view');
     });
 
     Route::prefix('business-type')->group(function(){
@@ -82,4 +122,3 @@ Route::group(['namespace' => 'BackEnd', 'middleware' => ['auth'] ], function(){
 
 
 });
-

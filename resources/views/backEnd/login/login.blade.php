@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Admin</title>
+  <title>Login | Page</title>
 
   <!-- Custom fonts for this template-->
   <link href="{{asset('public/backEnd')}}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -36,7 +36,7 @@
                   <form class="user" method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="form-group">
-                      <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                      <input type="email" name="email" class="form-control form-control-user" value="{{ old('email') }}" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
                       @if ($errors->has('email'))
                         <span class="help-block">
                             <strong class="text-danger">{{ $errors->first('email') }}</strong>
@@ -52,6 +52,9 @@
                       @endif
                     </div>
                     <input type="submit" class="btn btn-primary btn-user btn-block" name="btn" value="Login">
+                    <div class="text-center">
+                      <a class="small" href="{{ route('password.request') }}">Forgot Password?</a>
+                    </div>
                   </form>
                 </div>
               </div>

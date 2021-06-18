@@ -5,15 +5,13 @@ Edit Password
 @endsection
 
 @section('content')
-
-  <div class="container">
+<div class="container">
   <div class="row">
     <div class="col-sm-6"></div>
     <div class="col-sm-6">
       <a href="{{route('profiles.view')}}" class="btn btn-primary float-right btn-sm"><i class="fa fa-user"></i> Your Profile</a>
     </div>
   </div>
-    <!-- Outer Row -->
     <div class="row justify-content-center">
       <div class="col-xl-9 col-lg-12 col-md-9">
         <div class="card o-hidden border-0 shadow-lg">
@@ -41,13 +39,6 @@ Edit Password
                       <div class="col-sm-9">
                          <input type="email" name="email" value="{{$editProfile->email}}" class="form-control">
                          <strong class="text-danger"> {{$errors->has('email') ? $errors->first('email') : '' }} </strong>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-sm-3 col-form-label">Short Title</label>
-                      <div class="col-sm-9">
-                        <textarea rows="3" name="short_title" class="form-control" placeholder="Enter your title">{{$editProfile->short_title}}</textarea>
-                         <strong class="text-danger"> {{$errors->has('short_title') ? $errors->first('short_title') : '' }} </strong>
                       </div>
                     </div>
                     <div class="form-group row">
@@ -93,11 +84,7 @@ Edit Password
             </div>
           </div>
         </div>
-
       </div>
-
     </div>
-
-  </div>
-
+</div>
 @endsection
