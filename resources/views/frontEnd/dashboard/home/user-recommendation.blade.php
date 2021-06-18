@@ -10,23 +10,25 @@ User | Recommendation
         <ol class="breadcrumb mb-4 mt-4">
             <li class="breadcrumb-item active">Recommendation</li>
         </ol>
+        <p style="display: none;">{{ $floatMark = ($recommendation->marks / $questionTotalMark)*100 }}</p>
+        <p style="display: none;">{{ $recommendationMark = intval($floatMark) }}</p>
+
         <h4>Your recommendation information</h4><br>
         <table class="table table-bordered" width="100%">
         	<tr>
         		<th>SL</th>
 	        	<th>Section</th>
-	        	<th>Mark</th>
+                <th>Mark</th>
+	        	<th>Percentage</th>
         	</tr>
         	@php $key = 0; @endphp
         	<tr>
         		<td>{{ $key+1 }}</td>
         		<td>{{ $recommendation['section']['name'] }}</td>
-                <td>{{ $recommendation->marks }}</td>
+                <td>{{ $recommendation->marks }} \ {{ $questionTotalMark }}</td>
+                <td>{{ $recommendationMark }}%</td>
         	</tr>
         </table>
-        <p style="display: none;">{{ $floatMark = ($recommendation->marks / $questionTotalMark)*100 }}</p>
-        <p style="display: none;">{{ $recommendationMark = intval($floatMark) }}</p>
-        
 
         <p>Your recommendation below here.</p>
 

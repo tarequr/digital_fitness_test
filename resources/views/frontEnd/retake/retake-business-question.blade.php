@@ -10,7 +10,7 @@
 @section('content')
 
 	@php
-     $userDetails = App\User::where('id',Auth::user()->id)->first();
+	 $userDetails = App\Model\Answer::where('user_id', auth()->id())->orderBy('id','desc')->first();
      $userMonth = $userDetails->created_at->diffInMonths();
     @endphp
 
@@ -19,7 +19,7 @@
 		    <div class="card-body" style="text-align: center;">
 		        <div class="alert alert-danger alert-dismissible">
 		          <button type="button" class="close" data-dismiss="alert"></button>
-		          <strong>Sorry! You can no take survy within 6 months.</strong>
+		          <strong>Sorry! You can not take survey within 6 months.</strong>
 		          <p>Please go back home. <a href="{{ route('user.dashboard') }}">Dashboard</a></p>
 		        </div>
 		    </div>
